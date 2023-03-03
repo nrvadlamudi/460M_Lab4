@@ -18,13 +18,13 @@ module top(b1,b2,b3,b4,reset10,clk, reset205, sseg, an);
     wire [14:0] sec_to_sub;
     wire [6:0] seven [3:0];
     wire [3:0] d1,d2,d3,d4;
-    all_in_one a1( bs1, bs2, bs3, bs4,clk, reset10 ,reset205,sec_to_sub,flag);
-    bin_to_BCD bc(sec_to_sub,d1,d2,d3,d4);
-    clkshow show1(clk, display_clk);
+    all_in_one a1( bs1, bs2, bs3, bs4,clk, reset10 ,reset205,sec_to_sub,flag,zflag);
+    bin_to_BCD bc(clk,sec_to_sub,zflag,d1,d2,d3,d4);
+    clkshow show1(clk,zflag,display_clk);
     sevenseg s1(d1, seven[0]);
     sevenseg s2(d2, seven[1]);
     sevenseg s3(d3, seven[2]);
     sevenseg s4(d4, seven[3]);
-    mux m1(display_clk,seven[0],seven[1],seven[2],seven[3],an, sseg,clk,flag);
+    mux m1(display_clk,seven[0],seven[1],seven[2],seven[3],zflag,an, sseg,clk,flag);
     
 endmodule

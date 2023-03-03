@@ -6,7 +6,7 @@ module mux(
     input [6:0] in1,
     input [6:0] in2,
     input [6:0] in3,
-    
+    input zflag,
     output reg[3:0] an,
     output reg[6:0] sseg,
     input clkfast,
@@ -15,6 +15,7 @@ module mux(
 
 reg[1:0] state = 0;
 reg[1:0] next_state;
+reg zToggle = 0;
 
 always @(*) begin
     case(state)

@@ -4,6 +4,7 @@
 
 module clkshow(
     input clk,
+    input zflag,
     output clk_out
     );
     reg[15:0] count = 0;
